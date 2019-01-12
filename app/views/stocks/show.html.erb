@@ -1,0 +1,23 @@
+<% begin %>
+    <% @stock_quote = StockQuote::Stock.quote(@stock.ticker) %>
+<% rescue StandardError %>
+    <% 'Invalid Company' %>         
+<% end %>
+
+<div class="jumbotron">
+	<h1 class="display-4"><%= @stock_quote.company_name %></h1><br/>
+	<p class="lead">$<%= @stock_quote.latest_price %></p><br/>
+	<hr class="my-4">
+	<strong>Market Cap: </strong>$<%= @stock_quote.market_cap %><br/>
+	<strong>Price/Earning Ratio: </strong>$<%= @stock_quote.pe_ratio %><br/>
+	<strong>Close Price: </strong>$<%= @stock_quote.close %><br/>
+	<strong>Stock Open: </strong>$<%= @stock_quote.open %><br/>
+	<strong>Change Percent: </strong><%= @stock_quote.change_percent %>%<br/>
+	<strong>High: </strong>$<%= @stock_quote.high %><br/>
+	<strong>Low: </strong>$<%= @stock_quote.low %><br/>
+</div>
+
+<br/><br/>
+<%= link_to 'Edit', edit_stock_path(@stock), class: 'btn btn-outline-secondary' %>
+<%= link_to 'Delete', stock_path(@stock), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning" %>
+<%= link_to 'Return', stocks_path, class: 'btn btn-outline-danger' %>

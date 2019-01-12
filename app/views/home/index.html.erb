@@ -1,2 +1,29 @@
-<h1>Stock</h1>
-<p>Welcome to my stock page</p>
+<h1>Stock Search</h1>
+<br/><br/>
+<%= form_tag root_path, :method => 'POST' do %>
+	<%= text_field_tag 'id', nil, placeholder: "Enter Company Ticker Symbol", size: 50, class: "form-control" %>
+	<br/><br/>
+	<%= submit_tag 'Search', class: "btn btn-outline-primary" %>
+<% end %>
+
+<br/><br/>
+
+<% if @stock %>
+	<strong>Company Name: </strong><%= @stock.company_name %> - <%= @stock.symbol %><br/>
+	<strong>Lastest Price: </strong><%= @stock.latest_price %><br/>
+	<strong>Market Cap: </strong><%= @stock.market_cap %><br/>
+	<strong>Price/Earning Ratio: </strong><%= @stock.pe_ratio %><br/>
+	<strong>Close Price: </strong><%= @stock.close %><br/>
+	<strong>Stock Open: </strong><%= @stock.open %><br/>
+	<strong>Change Percent: </strong><%= @stock.change_percent %><br/>
+	<strong>High: </strong><%= @stock.high %><br/>
+	<strong>Low: </strong><%= @stock.low %><br/>
+
+<% elsif @nothing %>
+	<%= @nothing %>
+<% end %>
+
+<% if @error %>
+	<%= @error %>
+<% end %>
+

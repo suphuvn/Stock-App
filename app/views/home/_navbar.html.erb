@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Stock</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "Home", root_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "About Us", home_about_path, class: 'nav-link' %>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-right">
+
+    	<% if user_signed_in? %>
+    		<li><%= link_to "List Stocks", stocks_path, class: 'nav-link' %></li>
+    		<li><%= link_to "Add Stock", new_stock_path, class: 'nav-link' %></li>
+    		<li><%= link_to "Log Out", destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+    		<li><%= link_to "Edit User", edit_user_registration_path, class: 'nav-link' %></li>
+    	<% else %>
+    		<li><%= link_to "Sign Up", new_user_registration_path, class: 'nav-link' %></li>
+    		<li><%= link_to "Log In", new_user_session_path, class: 'nav-link' %></li>
+    	<% end %>
+    </ul>
+  </div>
+</nav>
